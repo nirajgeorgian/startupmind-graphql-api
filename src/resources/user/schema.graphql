@@ -1,0 +1,30 @@
+type Error {
+	message: String!
+}
+type User implements IUser {
+	id: ID!
+	firstname: String!
+	lastname: String!
+	email: String!
+	username: String!
+	gender: Gender!
+	verified: Boolean!
+	password: String!
+	created_at: String!
+	updated_at: String!
+	user: String!
+}
+input SignupMutation {
+	firstname: String!
+	lastname: String!
+	email: String!
+	username: String!
+	gender: Gender!
+	password: String!
+}
+extend type Query {
+	user(id: ID!): Result!
+}
+extend type Mutation {
+	signup(input: SignupMutation!): Result!
+}

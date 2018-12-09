@@ -1,0 +1,39 @@
+enum Permissions {
+	ADMIN
+	COMPANY
+	INVESTOR
+	JOBUSER
+	ONLYREAD
+	PERMISSIONUPDATE
+}
+enum Gender {
+	male
+	female
+	trans
+	not to mention
+}
+interface IUser {
+	firstname: String!
+	lastname: String!
+	email: String!
+	username: String!
+	gender: Gender!
+	verified: Boolean!
+	created_at: String!
+	updated_at: String!
+}
+union Result = Error | User
+type Query {
+	dummy: String
+}
+type Mutation {
+	dummy: String
+}
+type Subscription {
+	dummy: String
+}
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}

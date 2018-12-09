@@ -1,0 +1,9 @@
+type InvestorUser implements IUser {
+	firname: String!
+	lastname: String!
+	email: String!
+	username: String!
+	gender: Gender!
+	verified: Boolean!
+	password: String!
+}

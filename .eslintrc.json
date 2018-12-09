@@ -1,0 +1,33 @@
+{
+	"env": {
+		"es6": true,
+		"node": true
+	},
+
+	"extends": ["eslint:recommended", "plugin:prettier/recommended"],
+
+	"parser": "babel-eslint",
+
+	"plugins": ["babel"],
+
+	"parserOptions": {
+		"ecmaVersion": 2016,
+		"sourceType": "module",
+		"allowImportExportEverywhere": false
+	},
+
+	"rules": {
+		"babel/no-invalid-this": 1,
+		"comma-dangle": 2,
+		"no-cond-assign": 2,
+		"no-console": 2,
+		"no-debugger": 2,
+		"no-empty": 2,
+		"semi": [2, "never"],
+		"indent": [2, "tab", { "SwitchCase": 1 }],
+		"linebreak-style": ["error", "unix"],
+		"quotes": ["error", "single"],
+		"semi": ["error", "never"],
+		"max-len": [1, 120, 2]
+	}
+}
