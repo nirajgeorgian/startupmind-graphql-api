@@ -24,7 +24,7 @@ import UserMutation from './resources/user/mutations'
 import RootQuery from './resources/root/queries'
 import UserQuery from './resources/user/queries'
 
-const resolvers = merge(
+export const resolvers = merge(
 	{},
 	// Mutations
 	RootMutation,

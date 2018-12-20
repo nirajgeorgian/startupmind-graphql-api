@@ -4,6 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"flow": "flow",
+		"flow:check": "flow check ./src/",
 		"server:dev": "NODE_ENV=development webpack --colors --progress --config ./scripts/webpack/webpack.dev.js",
 		"server:prod": "npm run build && node dist/server.js",
 		"start": "rm -rf ./build && npm run server:dev",
@@ -17,6 +19,10 @@
 	"lint-staged": {
 		"./src/**/*.{js, md}": [
 			"prettier --single-quote --write",
+			"git add"
+		],
+		"./src/**/*.{js}": [
+			"eslint --fix",
 			"git add"
 		]
 	},
@@ -37,12 +43,17 @@
 		"@babel/preset-env": "^7.2.0",
 		"babel-eslint": "^10.0.1",
 		"babel-loader": "^8.0.4",
+		"babel-preset-flow": "^6.23.0",
 		"debug": "^4.1.0",
 		"eslint": "^5.10.0",
 		"eslint-config-prettier": "^3.3.0",
 		"eslint-plugin-babel": "^5.3.0",
+		"eslint-plugin-flowtype": "^3.2.0",
 		"eslint-plugin-prettier": "^3.0.0",
+		"eslint-plugin-standard": "^4.0.0",
+		"flow-bin": "^0.89.0",
 		"prettier": "^1.15.3",
+		"prettier-eslint": "^8.8.2",
 		"raw-loader": "^0.5.1",
 		"start-server-webpack-plugin": "^2.2.5",
 		"webpack": "^4.27.1",
@@ -55,12 +66,20 @@
 		"@sentry/node": "^4.4.1",
 		"apollo-engine": "^1.1.2",
 		"apollo-server-express": "^2.2.6",
+		"compression": "^1.7.3",
+		"cors": "^2.8.5",
 		"dotenv": "^6.2.0",
 		"express": "^4.16.4",
 		"graphql": "^14.0.2",
 		"graphql-cost-analysis": "^1.0.2",
 		"graphql-depth-limit": "^1.1.0",
+		"graphql-log": "^0.1.3",
+		"helmet": "^3.15.0",
+		"host-validation": "^2.0.1",
+		"hpp": "^0.2.2",
+		"jsonwebtoken": "^8.4.0",
 		"lodash.merge": "^4.6.1",
-		"mongoose": "^5.3.15"
+		"mongoose": "^5.3.15",
+		"toobusy-js": "^0.5.1"
 	}
 }

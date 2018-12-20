@@ -9,7 +9,8 @@ module.exports = {
 				useBuiltIns: 'entry',
 				exclude: ['babel-plugin-transform-regenerator']
 			}
-		]
+		],
+		'flow'
 	],
 	plugins: [
 		'@babel/plugin-syntax-dynamic-import',

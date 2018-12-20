@@ -15,6 +15,9 @@ const RootQuery = {
 			if (obj.user) {
 				return 'User'
 			}
+			if (obj.token) {
+				return 'Token'
+			}
 			return null
 		}
 	},

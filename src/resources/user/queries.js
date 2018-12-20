@@ -1,16 +1,16 @@
 import UserModel from './model'
-import { ErrorMessage } from '../../utils/Message'
+import { errMsg } from '../../utils/message'
 import { getUser } from './methods'
 
 const user = async (_, { id }) => {
 	try {
 		const user = await UserModel.findById(id)
 		if (!user) {
-			return ErrorMessage('no user exists')
+			return errMsg('no user exists')
 		}
 		return getUser(user)
 	} catch (e) {
-		return ErrorMessage(e.message)
+		return errMsg(e.message)
 	}
 }
 

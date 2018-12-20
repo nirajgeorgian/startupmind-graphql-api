@@ -45,9 +45,11 @@ const userModel = new Schema(
 			unique: true,
 			validate: {
 				/* eslint-disable */
-			validator(v) {
-				return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
-			},
+				validator(v) {
+					return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+						v
+					)
+				},
 				message: (props) => `${props.value} is not a valid email`
 			},
 			required: true
@@ -57,7 +59,10 @@ const userModel = new Schema(
 			required: true
 		},
 		verified: { type: Boolean, default: false },
-		user: { type: String, default: 'User'}
+		token: {
+			default: { type: String }
+		},
+		user: { type: String, default: 'User' }
 	},
 	{ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } }
 )

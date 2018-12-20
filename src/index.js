@@ -1,19 +1,24 @@
-const Sentry = require('@sentry/node')
 import express from 'express'
+import createGraphQLLogger from 'graphql-log'
 import { ApolloEngine } from 'apollo-engine'
 
 import GraphQLServer from './server'
+import middlewares from './middlewares'
+import { resolvers } from './server'
 
-Sentry.init({
-	dsn: 'https://4ec59da5ab13485d9ae142f1ed87577f@sentry.io/1340275',
-	maxBreadcrumbs: 50,
-	debug: true,
-	environment: 'production'
+const logExections = createGraphQLLogger({
+	prefix: 'resolvers: '
 })
+if (process.env.NODE_ENV === 'development') {
+	logExections(resolvers)
+}
+
 const app = express()
+middlewares(app)
 GraphQLServer.applyMiddleware({
 	app
 })
+
 const GraphQLEngine = new ApolloEngine({
 	apiKey: process.env.API_ENGINE_KEY,
 	logging: {

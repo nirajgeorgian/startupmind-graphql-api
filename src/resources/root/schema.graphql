@@ -10,7 +10,9 @@ enum Gender {
 	male
 	female
 	trans
-	not to mention
+	not
+	to
+	mention
 }
 interface IUser {
 	firstname: String!
@@ -22,7 +24,7 @@ interface IUser {
 	created_at: String!
 	updated_at: String!
 }
-union Result = Error | User
+union Result = Error | User | Token
 type Query {
 	dummy: String
 }
