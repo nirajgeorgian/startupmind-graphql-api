@@ -1,5 +1,5 @@
-import UserModel from './model'
-import { errMsg } from '../../utils/message'
+import UserModel from '../model'
+import { errMsg } from '../../../utils/message'
 import { getUser } from './methods'
 
 const user = async (_, { id }) => {

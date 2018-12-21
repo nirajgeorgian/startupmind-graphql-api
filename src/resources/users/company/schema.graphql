@@ -1,0 +1,23 @@
+type CompanyUser implements INode & IUser {
+	companyUser: String!
+	id: ID!
+	firstname: String!
+	lastname: String!
+	email: String!
+	username: String!
+	gender: Gender!
+	phone: Phone!
+	info: AccInfo!
+	type: AccType!
+	token: Token
+	company: String!
+	created_at: String!
+	updated_at: String!
+}
+extend type Query {
+	companyUser(id: ID!): Result!
+}
+extend type Mutation {
+	comp_user_signup(input: SignupMutation!): Result!
+	comp_user_login(input: LoginMutation): Result!
+}

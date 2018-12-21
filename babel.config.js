@@ -10,9 +10,15 @@ module.exports = {
 				exclude: ['babel-plugin-transform-regenerator']
 			}
 		],
-		'flow'
+		'@babel/preset-flow'
 	],
 	plugins: [
+		[
+			'module-resolver',
+			{
+				root: ['./src']
+			}
+		],
 		'@babel/plugin-syntax-dynamic-import',
 		'@babel/plugin-syntax-async-generators',
 		'@babel/plugin-proposal-export-namespace-from',

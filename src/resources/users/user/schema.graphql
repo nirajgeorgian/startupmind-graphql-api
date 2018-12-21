@@ -1,21 +1,26 @@
-type Error {
-	message: String!
-}
-type User implements IUser {
+type User implements INode & IUser {
+	user: String!
 	id: ID!
 	firstname: String!
 	lastname: String!
 	email: String!
 	username: String!
 	gender: Gender!
-	verified: Boolean!
-	password: String!
+	phone: Phone!
+	info: AccInfo!
+	type: AccType!
+	token: Token
 	created_at: String!
 	updated_at: String!
-	user: String!
 }
-type Token {
-	token: String!
+input AccInfoMutation {
+	level: String
+	verified: Boolean!
+}
+input PhoneMutation {
+	no: String!
+	con_code: String
+	verified: Boolean
 }
 input SignupMutation {
 	firstname: String!
@@ -23,6 +28,9 @@ input SignupMutation {
 	email: String!
 	username: String!
 	gender: Gender!
+	phone: PhoneMutation!
+	info: AccInfoMutation!
+	type: AccType!
 	password: String!
 }
 input LoginMutation {
@@ -33,6 +41,6 @@ extend type Query {
 	user(id: ID!): Result!
 }
 extend type Mutation {
-	signup(input: SignupMutation!): Result!
-	login(input: LoginMutation): Result!
+	user_signup(input: SignupMutation!): Result!
+	user_login(input: LoginMutation): Result!
 }

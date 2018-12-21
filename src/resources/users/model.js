@@ -24,22 +24,6 @@ const userModel = new Schema(
 			},
 			required: [true, 'lastname is required']
 		},
-		gender: {
-			type: String,
-			enum: ['male', 'female', 'trans', 'not to mention']
-		},
-		dob: { type: String },
-		username: {
-			type: String,
-			unique: true,
-			validate: {
-				validator(v) {
-					return /^[a-zA-z0-9]{5,20}$/.test(v)
-				},
-				message: (props) => `${props.value} is not a valid username`
-			},
-			required: [true, 'username is required']
-		},
 		email: {
 			type: String,
 			unique: true,
@@ -54,15 +38,54 @@ const userModel = new Schema(
 			},
 			required: true
 		},
+		username: {
+			type: String,
+			unique: true,
+			validate: {
+				validator(v) {
+					return /^[a-zA-z0-9]{3,20}$/.test(v)
+				},
+				message: (props) => `${props.value} is not a valid username`
+			},
+			required: [true, 'username is required']
+		},
+		gender: {
+			type: String,
+			enum: ['male', 'female', 'other']
+		},
+		phone: {
+			no: {
+				type: String,
+				unique: true,
+				validate: {
+					validator(v) {
+						return /^[0-9]{10}$/.test(v)
+					},
+					message: (props) => `${props.value} is not a valid 10 digit phone number`
+				},
+				required: [true, 'phone no is required']
+			},
+			con_code: { type: String, default: '+91' },
+			verified: { type: Boolean, default: false }
+		},
+		info: {
+			level: String,
+			verified: { type: Boolean, default: false }
+		},
+		type: {
+			type: String,
+			enum: ['USER', 'COMPANY_USER', 'FUNDING_USER']
+		},
+		token: {
+			default: { type: String },
+			token: { type: String }
+		},
 		password: {
 			type: String,
 			required: true
 		},
-		verified: { type: Boolean, default: false },
-		token: {
-			default: { type: String }
-		},
-		user: { type: String, default: 'User' }
+		user: { type: String },
+		companyUser: { type: String }
 	},
 	{ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } }
 )

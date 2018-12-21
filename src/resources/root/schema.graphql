@@ -9,10 +9,18 @@ enum Permissions {
 enum Gender {
 	male
 	female
-	trans
-	not
-	to
-	mention
+	other
+}
+enum AccType {
+	USER
+	COMPANY_USER
+	FUNDING_USER
+}
+
+interface INode {
+	id: ID!
+	created_at: String!
+	updated_at: String!
 }
 interface IUser {
 	firstname: String!
@@ -20,11 +28,36 @@ interface IUser {
 	email: String!
 	username: String!
 	gender: Gender!
-	verified: Boolean!
-	created_at: String!
-	updated_at: String!
+	phone: Phone!
+	info: AccInfo!
+	type: AccType!
 }
-union Result = Error | User | Token
+
+union Result = Error | User | CompanyUser | Token
+
+type Error {
+	message: String!
+}
+type Token {
+	type: String
+	default: String
+	token: String!
+}
+type PageInfo {
+	endCursor: String!
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+	startCursor: String!
+}
+type Phone {
+	no: String!
+	con_code: String!
+	verified: Boolean!
+}
+type AccInfo {
+	level: String
+	verified: Boolean!
+}
 type Query {
 	dummy: String
 }

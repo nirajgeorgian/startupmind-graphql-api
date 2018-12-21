@@ -48,7 +48,7 @@ export const logGraphQLError = (req, error) => {
 const createGraphQLErrorFormatter = (req) => (error) => {
 	logGraphQLError(req, error)
 
-	let sentryId = 'ID only generated in production'
+	let sentryId = 'SENTRY_ID only generated in production'
 	const isUserError = error.originalError ? error.originalError[IsUserError] : error[IsUserError]
 	if (!isUserError) {
 		if (process.env.NODE_ENV === 'production') {
