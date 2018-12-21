@@ -11,7 +11,13 @@ import createGraphQLError from './utils/create-graphql-error-formatter'
  */
 import RootSchema from './resources/root/schema.graphql'
 import UserSchema from './resources/users/user/schema.graphql'
-import CompayUserSchema from './resources/users/company/schema.graphql'
+import CompanyUserSchema from './resources/users/company/schema.graphql'
+import InvestorSchema from './resources/users/investor/schema.graphql'
+import CompanySchema from './resources/company/schema.graphql'
+import JobSchema from './resources/jobs/schema.graphql'
+import OpenSourceSchema from './resources/opensource/schema.graphql'
+import ResumeSchema from './resources/resume/schema.graphql'
+import ReviewsSchema from './resources/reviews/schema.graphql'
 
 /*
  * Import all the GraphQl Mutations file
@@ -41,7 +47,17 @@ export const resolvers = merge(
 /*
  * form a Schema by combining all the graphql files
  */
-const typeDefs = [RootSchema, UserSchema, CompayUserSchema]
+const typeDefs = [
+	RootSchema,
+	UserSchema,
+	CompanyUserSchema,
+	InvestorSchema,
+	CompanySchema,
+	JobSchema,
+	OpenSourceSchema,
+	ResumeSchema,
+	ReviewsSchema
+]
 const schema = makeExecutableSchema({
 	typeDefs,
 	resolvers

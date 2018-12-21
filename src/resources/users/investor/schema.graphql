@@ -1,9 +1,14 @@
-type InvestorUser implements IUser {
-	firname: String!
+type InvestorUser implements INode & IUser {
+	id: ID!
+	firstname: String!
 	lastname: String!
 	email: String!
 	username: String!
 	gender: Gender!
-	verified: Boolean!
+	phone: Phone!
+	info: AccInfo!
+	type: AccType!
 	password: String!
+	created_at: String!
+	updated_at: String!
 }

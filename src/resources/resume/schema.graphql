@@ -1,0 +1,40 @@
+type WorkExp {
+	title: String
+	desc: String
+	company_name: String
+	location: String
+	from_date: String
+	to_date: String
+	tools_used: [String]
+	currently_working: String
+}
+enum ExpType {
+	begineer
+	intermediate
+	advance
+}
+type Skills {
+	name: String
+	level: ExpType
+}
+type Project {
+	title: String
+	desc: String
+	url: String
+	members: [String!]
+	from_date: String
+	to_date: String
+	tools_used: [String]
+	currently_working: Boolean
+}
+type Reviews implements INode {
+	id: ID!
+	user_id: String!
+	internships: [WorkExp]
+	jobs: [WorkExp]
+	trainings: [WorkExp]
+	skills: [Skills]
+	projects: Project
+	created_at: String!
+	updated_at: String!
+}

@@ -1,0 +1,10 @@
+type OpenSource implements INode {
+	id: ID!
+	title: String!
+	description: String!
+	url: String!
+	languages: [String!]
+	licence_type: String!
+	created_at: String!
+	updated_at: String!
+}

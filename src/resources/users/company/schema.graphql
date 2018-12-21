@@ -10,9 +10,14 @@ type CompanyUser implements INode & IUser {
 	info: AccInfo!
 	type: AccType!
 	token: Token
-	company: String!
+	companies: [String!]
+	jobs_provided: JobsProvided
 	created_at: String!
 	updated_at: String!
+}
+type JobsProvided {
+	count: Int
+	jobs: [String!]
 }
 extend type Query {
 	companyUser(id: ID!): Result!

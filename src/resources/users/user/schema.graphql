@@ -10,6 +10,9 @@ type User implements INode & IUser {
 	info: AccInfo!
 	type: AccType!
 	token: Token
+	resume: String
+	jobs_applied: [String]
+	work_experience: [String!]
 	created_at: String!
 	updated_at: String!
 }
