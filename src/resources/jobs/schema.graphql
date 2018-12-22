@@ -5,46 +5,79 @@ enum CurrentStatus {
 	closed
 	urgent
 }
-type Resume {
-	path: String!
-	user_id: String!
+enum JobType {
+	featured
+	default
+	premium
+}
+enum Sort {
+	asc
+	desc
+}
+type Sallary {
+	value: Float!
+	currency: String!
+}
+type Attachment {
+	type: String
+	file: String
 }
 type Job implements INode {
+	job: String
 	id: ID!
 	name: String!
-	type: String!
+	type: JobType!
 	category: [String!]!
 	desc: String!
 	skills_required: [String!]!
-	sallary_min: Float!
-	sallary_max: Float!
-	location: String
-	attachment: [String]
-	resume: Resume
-	current_status: CurrentStatus!
+	sallary_min: Sallary!
+	sallary_max: Sallary!
+	location: String!
+	attachment: [Attachment]
+	status: CurrentStatus!
 	views: Int
+	users_applied: [String!]
 	created_by: String
-	company: String
-	profile: String
-	appliedCandidate: [String!]
+	company: String!
 	created_at: String!
 	updated_at: String!
 }
+type JobResultCursor {
+	edges: Edge!
+	pageInfo: PageInfo!
+	totalCount: Int!
+}
 extend type Query {
-	fetchJob: Job
+	jobs(input: Pagination): JobResultCursor!
+}
+input Pagination {
+	page: Int
+	first: Int
+	after: String
+	offset: Int
+	sort: Sort
+}
+input SallaryMutation {
+	value: Float!
+	currency: String!
+}
+input AttachmentMutation {
+	type: String
+	file: String
 }
 input createJobInput {
-	name: String
-	type: String
-	desc: String
-	skills_required: [String]
-	sallary_min: Float
-	sallary_max: Float
-	location: String
-	profile: String
-	company: String
-	organization: String
+	name: String!
+	type: JobType!
+	category: [String!]!
+	desc: String!
+	skills_required: [String!]!
+	sallary_min: SallaryMutation!
+	sallary_max: SallaryMutation!
+	attachment: [AttachmentMutation]
+	location: String!
+	status: CurrentStatus!
+	company: String!
 }
 extend type Mutation {
-	jobCreate(input: createJobInput!): Job!
+	createJobs(input: createJobInput!): Result!
 }

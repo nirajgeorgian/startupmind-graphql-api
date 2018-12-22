@@ -1,10 +1,11 @@
 import UserModel from '../model'
+import JobsModel from '../../jobs/model'
 import token from '../../../utils/token'
 import { errMsg } from '../../../utils/message'
 import { generateJwtToken } from '../../../middlewares/auth/jwt.auth'
 import { getCompanyUser } from './methods'
 
-const comp_user_signup = async (_: Object, { input }: Object) => {
+const compUserSignup = async (_: Object, { input }: Object) => {
 	const { email, username } = input
 	const oldUser = await UserModel.findOne({ $or: [{ username }, { email }] })
 	if (oldUser) {
@@ -22,7 +23,7 @@ const comp_user_signup = async (_: Object, { input }: Object) => {
 	return getCompanyUser(user)
 }
 
-const comp_user_login = async (_: Object, { input }: Object): Object => {
+const compUserLogin = async (_: Object, { input }: Object): Object => {
 	const { email, password } = input
 	const user = await UserModel.findOne({ email })
 	if (!user) {
@@ -33,14 +34,14 @@ const comp_user_login = async (_: Object, { input }: Object): Object => {
 	}
 	return {
 		type: user.companyUser,
-		token: `Bearer ${generateJwtToken({ id: user.id })}`
+		token: `Bearer ${generateJwtToken({ id: user.id, type: user.type })}`
 	}
 }
 
 const CompanyUserMutations = {
 	Mutation: {
-		comp_user_signup,
-		comp_user_login
+		compUserSignup,
+		compUserLogin
 	}
 }
 

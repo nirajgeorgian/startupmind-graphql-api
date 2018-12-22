@@ -5,7 +5,7 @@ import { generateJwtToken } from '../../../middlewares/auth/jwt.auth'
 import { getUser } from './methods'
 // import { development } from '../../config/logger'
 
-const user_signup = async (_: Object, { input }: Object) => {
+const userSignup = async (_: Object, { input }: Object) => {
 	const { email, username } = input
 	const oldUser = await UserModel.findOne({ $or: [{ username }, { email }] })
 	if (oldUser) {
@@ -23,7 +23,7 @@ const user_signup = async (_: Object, { input }: Object) => {
 	return getUser(user)
 }
 
-const user_login = async (_: Object, { input }: Object): Object => {
+const userLogin = async (_: Object, { input }: Object): Object => {
 	const { email, password } = input
 	const user = await UserModel.findOne({ email })
 	if (!user) {
@@ -34,14 +34,14 @@ const user_login = async (_: Object, { input }: Object): Object => {
 	}
 	return {
 		type: user.user,
-		token: `Bearer ${generateJwtToken({ id: user.id })}`
+		token: `Bearer ${generateJwtToken({ id: user.id, type: user.type })}`
 	}
 }
 
 const UserMutations = {
 	Mutation: {
-		user_signup,
-		user_login
+		userSignup,
+		userLogin
 	}
 }
 export default UserMutations

@@ -33,7 +33,8 @@ interface IUser {
 	type: AccType!
 }
 
-union Result = Error | User | CompanyUser | Token
+union Result = Error | User | CompanyUser | Token | Job | Company
+union Node = Job
 
 type Error {
 	message: String!
@@ -43,11 +44,13 @@ type Token {
 	default: String
 	token: String!
 }
+type Edge {
+	cursor: String!
+	node: [Node!]!
+}
 type PageInfo {
 	endCursor: String!
 	hasNextPage: Boolean!
-	hasPreviousPage: Boolean!
-	startCursor: String!
 }
 type Phone {
 	no: String!

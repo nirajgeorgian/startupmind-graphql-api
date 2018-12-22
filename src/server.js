@@ -25,12 +25,15 @@ import ReviewsSchema from './resources/reviews/schema.graphql'
 import RootMutation from './resources/root/mutations'
 import UserMutation from './resources/users/user/mutations'
 import CompanyUserMutation from './resources/users/company/mutations'
+import CompanyMutation from './resources/company/mutatiions'
+import JobMutations from './resources/jobs/mutations'
 
 /*
  * Import all the Graphql Queries file
  */
 import RootQuery from './resources/root/queries'
 import UserQuery from './resources/users/user/queries'
+import JobsQuery from './resources/jobs/queries'
 
 export const resolvers = merge(
 	{},
@@ -38,10 +41,13 @@ export const resolvers = merge(
 	RootMutation,
 	UserMutation,
 	CompanyUserMutation,
+	CompanyMutation,
+	JobMutations,
 
 	// Queries
 	RootQuery,
-	UserQuery
+	UserQuery,
+	JobsQuery
 )
 
 /*

@@ -56,9 +56,10 @@ const createGraphQLErrorFormatter = (req) => (error) => {
 		}
 	}
 	return {
-		message: isUserError ? error.message : `Internal server error: ${sentryId}`,
+		sentryId,
+		// message: isUserError ? error.message : `Internal server error: ${error}`,
 		// Hide the stack trace in production mode
-		stack: !process.env.NODE_ENV === 'production' ? error.stack.split('\n') : null
+		message: process.env.NODE_ENV === 'production' ? null : error.message.split('\n')
 	}
 }
 

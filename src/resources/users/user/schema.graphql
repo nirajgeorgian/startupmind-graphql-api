@@ -44,6 +44,6 @@ extend type Query {
 	user(id: ID!): Result!
 }
 extend type Mutation {
-	user_signup(input: SignupMutation!): Result!
-	user_login(input: LoginMutation): Result!
+	userSignup(input: SignupMutation!): Result!
+	userLogin(input: LoginMutation): Result!
 }

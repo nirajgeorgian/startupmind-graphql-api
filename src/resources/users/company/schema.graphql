@@ -23,6 +23,6 @@ extend type Query {
 	companyUser(id: ID!): Result!
 }
 extend type Mutation {
-	comp_user_signup(input: SignupMutation!): Result!
-	comp_user_login(input: LoginMutation): Result!
+	compUserSignup(input: SignupMutation!): Result!
+	compUserLogin(input: LoginMutation): Result!
 }

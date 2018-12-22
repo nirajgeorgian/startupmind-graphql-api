@@ -18,8 +18,22 @@ const RootQuery = {
 			if (obj.companyUser) {
 				return 'CompanyUser'
 			}
+			if (obj.job) {
+				return 'Job'
+			}
+			if (obj.company) {
+				return 'Company'
+			}
 			if (obj.token) {
 				return 'Token'
+			}
+			return null
+		}
+	},
+	Node: {
+		__resolveType(obj) {
+			if (obj.job) {
+				return 'Job'
 			}
 			return null
 		}

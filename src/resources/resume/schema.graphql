@@ -27,7 +27,7 @@ type Project {
 	tools_used: [String]
 	currently_working: Boolean
 }
-type Reviews implements INode {
+type Resume implements INode {
 	id: ID!
 	user_id: String!
 	internships: [WorkExp]

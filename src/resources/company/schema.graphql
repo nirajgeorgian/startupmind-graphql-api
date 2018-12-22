@@ -9,32 +9,36 @@ type Company implements INode {
 	desc: String!
 	url: String
 	logo: String
-	location: String
+	location: String!
 	reviews: [ID!]
-	founded_year: String
+	founded_year: String!
 	last_active: String
 	hiring_status: Boolean
-	skills: [String!]
+	skills: [String!]!
 	no_of_employees: IntRange
-	opensource: [String]
+	opensource: [String!]
 	created_at: String!
 	updated_at: String!
 }
+input IntRangeMutation {
+	min: Int
+	max: Int
+}
 input CompanyDetails {
-	created_by: ID!
 	name: String!
 	desc: String!
 	url: String
 	logo: String
-	location: String
-	compnay_since: String
+	location: String!
+	founded_year: String!
 	hiring_status: Boolean
-	languages: [String!]
-	no_of_employees: Int
+	skills: [String!]!
+	no_of_employees: IntRangeMutation
+	opensource: [String!]
 }
 extend type Query {
 	fetchCompany: Company
 }
 extend type Mutation {
-	createCompany(input: CompanyDetails!): Company
+	createCompany(input: CompanyDetails!): Result!
 }

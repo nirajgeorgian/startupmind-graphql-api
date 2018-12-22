@@ -1,9 +1,9 @@
 import mongoose from 'mongoose'
-import { mongodb } from '../../db.connections'
 const Schema = mongoose.Schema
 
 const companyModel = new Schema(
 	{
+		company: { type: String, default: 'COMPANY' },
 		created_by: {
 			type: Schema.Types.ObjectId,
 			ref: 'User'
@@ -19,9 +19,10 @@ const companyModel = new Schema(
 		hiring_status: { type: Boolean, default: false },
 		skills: [{ type: String }],
 		no_of_employees: { min: { type: Number }, max: { type: Number } },
+		jobs: [{ type: Schema.Types.ObjectId, ref: 'Jobs' }],
 		opensource: [{ type: Schema.Types.ObjectId, ref: 'OpenSource' }]
 	},
 	{ timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } }
 )
 
-export default mongodb.model('Company', companyModel)
+export default mongoose.model('Company', companyModel)
