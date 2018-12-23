@@ -4,7 +4,7 @@ import { ApolloEngine } from 'apollo-engine'
 
 import GraphQLServer from './server'
 import middlewares from './middlewares'
-import { resolvers } from './server'
+import { resolvers } from './schema'
 
 const logExections = createGraphQLLogger({
 	prefix: 'resolvers: '

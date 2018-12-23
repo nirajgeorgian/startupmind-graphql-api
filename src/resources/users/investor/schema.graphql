@@ -1,4 +1,5 @@
 type InvestorUser implements INode & IUser {
+	investorUser: String!
 	id: ID!
 	firstname: String!
 	lastname: String!
