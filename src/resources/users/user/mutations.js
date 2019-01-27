@@ -7,11 +7,21 @@ import { getUser } from './methods'
 
 const userSignup = async (_: Object, { input }: Object) => {
 	const { email, username } = input
-	const oldUser = await UserModel.findOne({ $or: [{ username }, { email }] })
+	let oldUser
+	try {
+		oldUser = await UserModel.findOne({ $or: [{ username }, { email }] })
+	} catch (e) {
+		return errMsg('server error')
+	}
 	if (oldUser) {
 		return errMsg('User already exists')
 	}
-	const user = new UserModel(input)
+	let user
+	try {
+		user = new UserModel(input)
+	} catch (e) {
+		return errMsg(`Error: ${e.message}`)
+	}
 	user.user = user.type
 	user.hashPassword()
 	user.token.default = token(20)

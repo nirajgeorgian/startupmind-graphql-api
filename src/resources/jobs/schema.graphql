@@ -49,6 +49,7 @@ type JobResultCursor {
 }
 extend type Query {
 	jobs(input: Pagination): JobResultCursor!
+	job(id: ID!): Job
 }
 input Pagination {
 	page: Int

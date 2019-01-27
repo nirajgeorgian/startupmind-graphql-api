@@ -2,12 +2,14 @@ import { ApolloServer, makeExecutableSchema } from 'apollo-server-express'
 import depthLimit from 'graphql-depth-limit'
 import costAnalysis from 'graphql-cost-analysis'
 
+import type { $Request, $Response } from 'express'
+
 import schema from './schema'
 import UserError from './utils/UserError'
 import createGraphQLError from './utils/create-graphql-error-formatter'
 
 class ProtectedApolloServer extends ApolloServer {
-	async createGraphQLServerOptions(req, res) {
+	async createGraphQLServerOptions(req: $Request, res: $Response) {
 		const options = await super.createGraphQLServerOptions(req, res)
 		return {
 			...options,

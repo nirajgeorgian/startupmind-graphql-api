@@ -37,7 +37,8 @@ input CompanyDetails {
 	opensource: [String!]
 }
 extend type Query {
-	fetchCompany: Company
+	fetchCompanies: [Company!]!
+	fetchCompany(id: ID!): Company
 }
 extend type Mutation {
 	createCompany(input: CompanyDetails!): Result!

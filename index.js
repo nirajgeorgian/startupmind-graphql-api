@@ -7,17 +7,32 @@ import app, { GraphQLEngine, GraphQLServer } from './src'
 import { development } from './src/config/logger'
 import './src/config/database'
 
-const port = process.env.PORT || 8080
-const numCPUs = os.cpus().length
+function normalizePort(val: string): number {
+	let port: number = parseInt(val, 10)
 
+	if (port && isNaN(port)) return port
+	else if (port >= 0) return port
+	else return 8080
+}
+const port: number = normalizePort(process.env.PORT)
+const numCPUs: number = os.cpus().length
+
+type Worker = {|
+	process: {
+		pid: number
+	}
+|}
 if (cluster.isMaster) {
 	for (let i = 0; i < numCPUs; i += 1) {
 		cluster.fork()
 	}
 
-	cluster.on('exit', (worker, code, signal) => {
-		development(`worker ${worker.process.pid} died with signal ${signal}`)
-	})
+	cluster.on(
+		'exit',
+		(worker: Worker, code: number, signal: number): void => {
+			development(`worker ${worker.process.pid} died with signal ${signal}`)
+		}
+	)
 } else {
 	const server = http.createServer(app)
 	let currentApp = app

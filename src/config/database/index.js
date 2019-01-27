@@ -5,7 +5,7 @@ import { development } from '../logger'
  * @mongodb connection
  * Database connection for nosql database
  */
-const mongoUrl = `mongodb://${process.env.MONGO_SERVER_HOST}:${process.env.MONGO_SERVER_PORT}/${
+const mongoUrl: string = `mongodb://${process.env.MONGO_SERVER_HOST}:${process.env.MONGO_SERVER_PORT}/${
 	process.env.MONGO_SERVER_DATABASE
 }`
 mongoose.connect(

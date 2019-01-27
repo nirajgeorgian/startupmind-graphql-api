@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'development') {
 	logExections(resolvers)
 }
 
-const app = express()
+const app: express$Application = express()
 middlewares(app)
 GraphQLServer.applyMiddleware({
 	app
